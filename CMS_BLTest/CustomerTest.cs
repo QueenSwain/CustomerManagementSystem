@@ -76,7 +76,7 @@ namespace CMS_BLTest
             validOrder.OrderDate = Convert.ToDateTime("10-03-2019");
 
             var expected = true;
-            var actual = validOrder.ValidateOrder();
+            var actual = validOrder.Validate();
 
             Assert.AreEqual(expected,actual);
 
