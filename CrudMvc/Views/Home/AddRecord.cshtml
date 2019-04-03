@@ -1,0 +1,69 @@
+﻿@model CrudMvc.DataAccessLayer.SQLDB
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>AddRecord</title>
+</head>
+<body>
+    <div> 
+        <form method="post">
+            <div class="form-group">
+                <label class="col-sm-3">Name</label>
+                <div class="col-sm-6">
+                    <input type="text" name="Name" class="col-xs-10 col-xs-8" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-3">Address</label>
+                <div class="col-sm-6">
+                    <input type="text" name="Address" class="col-xs-10 col-xs-8" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-3">City</label>
+                <div class="col-sm-6">
+                    <input type="text" name="City" class="col-xs-10 col-xs-8" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-3">PinCode</label>
+                <div class="col-sm-6">
+                    <input type="text" name="PinCode" class="col-xs-10 col-xs-8" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-3">Designation</label>
+                <div class="col-sm-6">
+                    <input type="text" name="Designation" class="col-xs-10 col-xs-8" />
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <div class="col-sm-9">
+                    <input type="submit" name="Submit" class="btn btn-primary" />
+                </div>
+            </div>
+
+
+        </form>
+    </div>
+    @{ 
+        if(TempData["msg"]!=null)
+        {
+            <script>alert('@TempData["msg"]')</script>
+        }
+    }
+</body>
+</html>

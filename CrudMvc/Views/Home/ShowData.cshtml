@@ -1,0 +1,64 @@
+﻿@model CrudMvc.DataAccessLayer.SQLDB
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>ShowData</title>
+</head>
+<body>
+    <div class="table-responsive">
+        <table class="table table-striped table-bordered table-hover table-condensed">
+            <thead>
+                
+                <tr>
+                    <th>Emp Id</th>
+                    <th>Emp Name</th>
+                    <th>Address</th>
+                    <th>City</th>
+                    <th>Pin Code</th>
+                    <th>Designation</th>
+                    <th>Actions</th>
+                </tr>
+
+            </thead>
+            <tbody>
+
+                @{
+                    foreach (System.Data.DataRow dr in ViewBag.emp.Rows)
+                    {
+
+                        <tr>
+                            <td>@dr["EmpId"]</td>
+                            <td>@dr["Name"]</td>
+                            <td>@dr["Address"]</td>
+                            <td>@dr["City"]</td>
+                            <td>@dr["PinCode"]</td>
+                            <td>@dr["Designation"]</td>
+                            <td>
+
+                                <a href="/Home/UpdateRecord?Id=@dr["EmpId"]">Update</a>
+                                <a href="/Home/DeleteRecord?Id=@dr["EmpId"]">Delete</a>
+                            </td>
+                        </tr>
+                    }
+                 
+                }
+            </tbody>
+        </table>
+
+    </div>
+    @{
+        if (TempData["msg"] != null)
+        {
+            <script>alert('@TempData["msg"]')</script>
+        }
+    }
+</body>
+</html>

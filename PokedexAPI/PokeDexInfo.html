@@ -1,0 +1,36 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <script src="Scripts/jquery-3.3.1.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var ulPokedex = $('#ulPokedex');
+
+            $('#btn').click(function () {
+                $.ajax({
+                    type: 'GET',
+                    url: 'api/Pokedex',
+                    dataType: 'json',
+                    success: function (data) {
+                        ulPokedex.empty();
+                        $.each(data, function (index, val) {
+                            var PokeName = val.PokeName
+                            ulPokedex.append('<li>' + PokeName + '</li>')
+                        });
+                    }
+                });
+            });
+            $('#btnClear').click(function () {
+                ulPokedex.empty();
+            });
+        });
+    </script>
+</head>
+<body>
+    <input id="=btn" type="button" value="Get all Poke list"/>
+    <input id="btnClear" type="button" value="Clear"/>
+    <ul id="ulPokedex"></ul>
+</body>
+</html>

@@ -23,7 +23,8 @@ namespace CustomerManagementSystem.BL
         }
         public OrderDisplay RetrieveOrderDisplay(int orderId)
         {
-            OrderDisplay orderDisplay = new OrderDisplay();
+            OrderDisplay orderDisplay = new OrderDisplay();  
+
             if(orderId==1)
             {
                 orderDisplay.FirstName = "Queen";
