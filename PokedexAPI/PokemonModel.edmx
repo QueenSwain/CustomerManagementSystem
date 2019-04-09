@@ -4,34 +4,33 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="PokedexDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityType Name="Pokemon">
+    <Schema Namespace="PokemonModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Pokemons">
           <Key>
-            <PropertyRef Name="PokemonId" />
+            <PropertyRef Name="pokeid" />
           </Key>
-          <Property Name="PokemonId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="PokemonName" Type="nvarchar" MaxLength="50" />
-          <Property Name="Sprite" Type="varbinary(max)" />
-          <Property Name="Id" Type="int" />
+          <Property Name="pokeid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="sprite" Type="varbinary(max)" Nullable="false" />
+          <Property Name="id" Type="int" Nullable="false" />
         </EntityType>
-        <EntityContainer Name="PokedexDBModelStoreContainer">
-          <EntitySet Name="Pokemon" EntityType="Self.Pokemon" Schema="dbo" store:Type="Tables" />
+        <EntityContainer Name="PokemonModelStoreContainer">
+          <EntitySet Name="Pokemons" EntityType="Self.Pokemons" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="PokedexDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="PokemonModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="Pokemon">
           <Key>
-            <PropertyRef Name="PokemonId" />
+            <PropertyRef Name="pokeid" />
           </Key>
-          <Property Name="PokemonId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="PokemonName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Sprite" Type="Binary" MaxLength="Max" FixedLength="false" />
-          <Property Name="Id" Type="Int32" />
+          <Property Name="pokeid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="sprite" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+          <Property Name="id" Type="Int32" Nullable="false" />
         </EntityType>
-        <EntityContainer Name="PokedexDBEntities1" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="PokemonEntities3" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Pokemons" EntityType="Self.Pokemon" />
         </EntityContainer>
       </Schema>
@@ -39,14 +38,14 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="PokedexDBModelStoreContainer" CdmEntityContainer="PokedexDBEntities1">
+        <EntityContainerMapping StorageEntityContainer="PokemonModelStoreContainer" CdmEntityContainer="PokemonEntities3">
           <EntitySetMapping Name="Pokemons">
-            <EntityTypeMapping TypeName="PokedexDBModel.Pokemon">
-              <MappingFragment StoreEntitySet="Pokemon">
-                <ScalarProperty Name="PokemonId" ColumnName="PokemonId" />
-                <ScalarProperty Name="PokemonName" ColumnName="PokemonName" />
-                <ScalarProperty Name="Sprite" ColumnName="Sprite" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
+            <EntityTypeMapping TypeName="PokemonModel.Pokemon">
+              <MappingFragment StoreEntitySet="Pokemons">
+                <ScalarProperty Name="pokeid" ColumnName="pokeid" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="sprite" ColumnName="sprite" />
+                <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

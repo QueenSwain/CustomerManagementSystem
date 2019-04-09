@@ -1,0 +1,46 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+
+@model IEnumerable<Pokemon>
+@using (Html.BeginForm("Index", "User", FormMethod.Post))
+{
+    ViewBag.Title = "Users";
+}
+
+
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h3 class="panel-title">Pokemon List</h3>
+    </div>
+    
+    <div class="panel-body">
+
+        <ul class="list-inline">
+            @foreach (Pokemon pklist in Model)
+            {
+                <li class="active">
+
+                    @pklist.id
+                    @pklist.name
+                    <figure class="figure">
+                        @{
+                            var base64 = Convert.ToBase64String(@pklist.sprite);
+                            var imgSrc = String.Format("data:image/png;base64,{0}", base64);
+                        }
+                        <img src=@imgSrc class="figure-img img-fluid rounded" alt="...">
+                    </figure>
+
+                </li>
+
+            }
+        </ul>
+        
+    </div>
+</div>
+
+
+
+    

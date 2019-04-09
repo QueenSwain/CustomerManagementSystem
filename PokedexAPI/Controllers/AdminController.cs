@@ -7,6 +7,11 @@ using Newtonsoft.Json.Linq;
 using System;
 using System.IO;
 using System.Text;
+using System.Web.Http.Description;
+using System.Linq;
+using System.Data.Entity.Infrastructure;
+using System.Threading.Tasks;
+using System.Threading;
 
 namespace PokedexAPI.Controllers
 {
@@ -22,88 +27,72 @@ namespace PokedexAPI.Controllers
         [HttpPost]
         public ActionResult Index(string start_pid, string end_pid)
         {
+            int start_id = Convert.ToInt32(start_pid);
+            int end_id = Convert.ToInt32(end_pid);
+
+            // List<Pokemon> pokemons = new List<Pokemon>();
+
+            PokemonEntities3 db = new PokemonEntities3();
 
             using (WebClient wc = new WebClient())
             {
-                //string pid = "1";
-                //if (start_pid == null)
-                //{
-                //    Random random = new Random();
-                //    pid = random.Next(1, 800).ToString();
-                //} else
-                //{
-                  string pid = start_pid;
-                //}
+                // Slow Process => Progressbar
+                for (int current_id = start_id; current_id <= end_id; current_id++)
+                {
+                    // Check if Pokemon by ID exists in DB then skip
+                    // TODO: Update Pokemon rather than skip
+                    bool hasData = db.Pokemons.Any(db_row => db_row.id == current_id);
+                    if (hasData == true) { continue; } //if true or ID exsits,continue -skip the below code
+
+                    string root_url = string.Format("https://pokeapi.co/api/v2/pokemon/{0}/", current_id);
+                    var json = wc.DownloadString(root_url); //dwonloading containts from url as a string 
+                    JObject parsed = JObject.Parse(json); //converting json var string to json object parsed.
+
+                    //Pokemon pk = JsonConvert.DeserializeObject<Pokemon>(json);
+                    Pokemon pk = new Pokemon();
 
 
-                string root_url = string.Format("https://pokeapi.co/api/v2/pokemon/{0}/", pid);
-                var json = wc.DownloadString(root_url);
+                    //deserializeobject- converts Json object  to pokemon class
+                    // now pk contains properties and it sets in pokemon class
+                    //set sprites_front_default = json url
+                    //get image from url and convert to byte to store in DB
+                    string SpriteUrl = (string)parsed.SelectToken("sprites.front_default"); //getting only part of url as a string
+                    pk.id = (int)parsed.SelectToken("id");
+                    pk.name = (string)parsed.SelectToken("name");
+                    pk.sprite = wc.DownloadData(SpriteUrl); //image downlading from url i.e.parsed object
 
-             
-                Pokemon pk = JsonConvert.DeserializeObject<Pokemon>(json);
 
-                // TODO: Avoid double parsing. Use Pokemon class directly to unpack all data if possible
-                JObject jo = JObject.Parse(json);
-                string sprite_url = (string)jo.SelectToken("sprites.front_default");
-         
-                pk.Sprite= wc.DownloadData(sprite_url);
+                    // pokemons.Add(pk);
+                    db.Pokemons.Add(pk);
+                    db.SaveChanges();
 
-                //ViewData["pid"] = pk.id;
-                //ViewData["pname"] = pk.name;
-                //ViewData["sprite"] = pk.sprite;
 
-                // poke url
-                // Download image from url to memory
-                // Convert memory to byte
+                }
+
+                //db.Pokemons.AddRange(pokemons);
+                //db.SaveChanges();
+
+                ViewData["pid"] = start_id;
+                ViewData["pname"] = start_id;
+                ViewData["sprites"] = start_id; //here json part of the url is displaying the image in UI
+
+                // Part 1 - Admin - Get Remote Data and Store in DB
+                // Get Pokemon ID, Name, Sprite as JSON
+                // Convert the JSON data to C# Pokemon Class
+                // Get Image from Sprite URL and convert to byte
                 // Store in DB
 
+                // Part 2 - Admin - Implement Admin Interface
+                // Get range of pokemons from remote api
+                // Show progressbar
+                // Function should UPDATE existing data
 
-                UploadPokemon(pk);
-
-
-                ViewData["pid"] = pk.Id;
-                ViewData["pname"] = pk.PokemonName;
-                ViewData["sprite"] = sprite_url;
             }
 
             // TODO: Get Input from View somehow start_pid and end_pid
             return View();
         }
 
-        [HttpPost]
-        public ActionResult UploadPokemon(Pokemon modeldata)
-        {
-
-
-            PokedexDBEntities1 PEntites = new PokedexDBEntities1();
-            {
-                if (ModelState.IsValid)
-                {
-                    using (var db = new PokedexDBEntities1())
-                    {
-                        // var encryptedPassword = CustomEncrypt.Encrypt(model.Password); /*encrypting our password  CustomLibrary*/
-
-
-                        //replaced with below line var Patient = db.Patient.Create();
-
-                        db.Pokemons.Add(modeldata);
-
-                        db.SaveChanges();
-                    }
-                }
-                else
-                {
-                    ModelState.AddModelError("", "Error with one or more fields,Please check fields");
-                }
-                return View();
-            }
-        }
-        private class PokemonUI
-        {
-            public int id { get; set; }
-            public string name { get; set; } 
-            public string sprite { get; set; }
-        }
+    } 
         
-    }
 }

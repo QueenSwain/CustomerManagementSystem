@@ -9,17 +9,26 @@
 
 namespace PokedexAPI
 {
-    using Newtonsoft.Json;
     using System;
     using System.Collections.Generic;
     
     public partial class Pokemon
     {
-        public int PokemonId { get; set; }
-        [JsonProperty(PropertyName = "name")]
-        public string PokemonName { get; set; }
-        public byte[] Sprite { get; set; }
-        [JsonProperty(PropertyName = "id")]
-        public Nullable<int> Id { get; set; }
+        
+
+        public int pokeid { get; set; }
+        public string name { get; set; }
+        public byte[] sprite { get; set; }
+        public int id { get; set; }
     }
+   public class PokemonList
+    {
+        public PokemonList()
+        {
+            PokemonsLists=new List<Pokemon>();
+        }
+        public List<Pokemon> PokemonsLists { set; get; }
+    }
+
+    
 }
