@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http.Headers;
 using System.Web.Http;
 
 namespace PokedexAPI
@@ -19,6 +20,12 @@ namespace PokedexAPI
                 routeTemplate: "api/{Controller}/{id}",
                 defaults: new { id = RouteParameter.Optional }
             );
+            //var appXmlType = config.Formatters.XmlFormatter.SupportedMediaTypes.FirstOrDefault(t => t.MediaType == "application/xml");
+            //config.Formatters.XmlFormatter.SupportedMediaTypes.Remove(appXmlType);
+            //OR below code for getting JSON api response
+
+            config.Formatters.JsonFormatter.SupportedMediaTypes
+            .Add(new MediaTypeHeaderValue("text/json"));
         }
     }
 }

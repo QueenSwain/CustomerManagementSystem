@@ -12,19 +12,22 @@
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+
                 @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home", new { area = "" }, null)</li>
-                    <li>@Html.ActionLink("API", "Index", "Help", new { area = "" }, null)</li>
-                    <li>@Html.ActionLink("Admin", "Index", "Admin", new { id = "adminForm" }, null)</li>
-                    <li>@Html.ActionLink("User", "Index", "User", new { id = "" }, null)</li>
-                </ul>
+
+
+                <div>
+                    <ul class="nav navbar navbar-left d-flex d-inline-flex">
+                        <li>@Html.ActionLink("Home", "Index", "Home", new { area = "" }, null)</li>
+                        <li>@Html.ActionLink("API", "Index", "Help", new { area = "" }, null)</li>
+                        <li>@Html.ActionLink("Admin", "Index", "Admin", new { id = "adminForm" }, null)</li>
+                        <li>@Html.ActionLink("User", "Index", "User", new { id = "" }, null)</li>
+                    </ul>
+                </div>
             </div>
         </div>
     </div>

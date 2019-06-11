@@ -1,8 +1,7 @@
-﻿using System;
-using System.Collections;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+using System.Net;
 using System.Web.Mvc;
 
 
@@ -21,8 +20,18 @@ namespace PokedexAPI.Controllers
         // GET: User
          public ActionResult Index()
         {
-          
-            return View(UserEntitites.Pokemons.ToList());
+           
+            using (WebClient wc1 = new WebClient())
+            { 
+                string root_url = string.Format("http://localhost:62010/api/PokemonAPI");
+                var json = wc1.DownloadString(root_url); //dwonloading containts from url as a string 
+                IEnumerable<Pokemon> parsed = JsonConvert.DeserializeObject<IEnumerable<Pokemon>>(json);
+                 //var valueSet =JsonConvert.DeserializeObject<Pokemon>(parsed).id;
+                ViewData["Pokemon"] = parsed;              
+                return View();
+               
+              
+            }
         }
 
         //[HttpPost]
@@ -30,7 +39,7 @@ namespace PokedexAPI.Controllers
         //{
         //    int pstart_id = Convert.ToInt32(startid);
         //    int pend_id = Convert.ToInt32(endid);
-        //    for (int enterdid = pstart_id; enterdid <= pend_id; enterdid++)
+        //    for (int enterdid = pstart_id; enterdid <= pend_id; enterdeid++)
         //    {
         //        UserEntitites.Pokemons.ToList();
         //    }
