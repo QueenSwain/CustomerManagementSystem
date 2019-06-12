@@ -14,21 +14,8 @@ namespace PokedexAPI
     
     public partial class Pokemon
     {
-        
-
-        public int pokeid { get; set; }
         public string name { get; set; }
         public byte[] sprite { get; set; }
         public int id { get; set; }
     }
-   public class PokemonList
-    {
-        public PokemonList()
-        {
-            PokemonsLists=new List<Pokemon>();
-        }
-        public List<Pokemon> PokemonsLists { set; get; }
-    }
-
-    
 }

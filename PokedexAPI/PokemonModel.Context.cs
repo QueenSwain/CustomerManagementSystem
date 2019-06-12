@@ -10,14 +10,13 @@
 namespace PokedexAPI
 {
     using System;
-    using System.Collections.Generic;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
-
-    public partial class PokemonEntities3 : DbContext
+    
+    public partial class PokedexDBEntities4 : DbContext
     {
-        public PokemonEntities3()
-            : base("name=PokemonEntities3")
+        public PokedexDBEntities4()
+            : base("name=PokedexDBEntities4")
         {
         }
     
@@ -27,10 +26,5 @@ namespace PokedexAPI
         }
     
         public virtual DbSet<Pokemon> Pokemons { get; set; }
-
-        public static implicit operator List<object>(PokemonEntities3 v)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

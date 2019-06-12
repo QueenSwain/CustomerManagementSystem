@@ -14,8 +14,7 @@ namespace PokedexAPI.Controllers
         // Implement GetPokemonById
         // Implement GetPokemonByIdRange
         // Setup Views for User
-
-        public PokemonEntities3 UserEntitites = new PokemonEntities3();
+        public PokedexDBEntities4 UserEntities = new PokedexDBEntities4();
         
         // GET: User
          public ActionResult Index()

@@ -228,17 +228,8 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
+    <Content Include="Images\missing.png" />
     <Content Include="PokeDexInfo.html" />
-    <Content Include="PokemonModel.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>PokemonModel.edmx</DependentUpon>
-      <LastGenOutput>PokemonModel.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="PokemonModel.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>PokemonModel.edmx</DependentUpon>
-      <LastGenOutput>PokemonModel.cs</LastGenOutput>
-    </Content>
     <Content Include="Areas\HelpPage\Views\Web.config" />
     <Content Include="Areas\HelpPage\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\ResourceModel.cshtml" />
@@ -261,12 +252,15 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <EntityDeploy Include="PokemonModel.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>PokemonModel.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="PokemonModel.edmx.diagram">
+    <Content Include="PokemonModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>PokemonModel.edmx</DependentUpon>
+      <LastGenOutput>PokemonModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="PokemonModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>PokemonModel.edmx</DependentUpon>
+      <LastGenOutput>PokemonModel.cs</LastGenOutput>
     </Content>
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
@@ -290,6 +284,13 @@
     <Content Include="Content\bootstrap-reboot.css.map" />
     <Content Include="Content\bootstrap-grid.min.css.map" />
     <Content Include="Content\bootstrap-grid.css.map" />
+    <EntityDeploy Include="PokemonModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>PokemonModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="PokemonModel.edmx.diagram">
+      <DependentUpon>PokemonModel.edmx</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
