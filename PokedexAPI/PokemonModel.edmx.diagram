@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="2c6c146b2e0c46b2b3634a2a4dfb0d44" Name="Diagram1">
+      <Diagram DiagramId="7c385a19c3dd4748969c392cbfa2d2a9" Name="Diagram1">
         <EntityTypeShape EntityType="PokedexDBModel.Pokemon" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
       </Diagram>
     </edmx:Diagrams>
