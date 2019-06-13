@@ -7,56 +7,71 @@
 @using (Html.BeginForm("Index", "Admin", FormMethod.Post))
 {
     <script>
-    $(function () {
-        var n = 1;
-        setInterval(function () {
-            if (n < 11) {
-                $.ajax({
-                    type: "Post",
-                    url: "Index.aspx/showprogress",
-                    data: "{'Index':'" + n + "'}",
-                    contentType: "application/json; charset=utf-8",
-                    dataType: "json",
-                    success: function (data) {
-                        var value = data.d;
-                        //alert(value);
-                        $(".progress-bar").attr("aria-valuenow", value);
-                        $(".progress-bar").attr("style", "width:" + value + "%");
-                        $(".progress-bar").text(value + "%");
-                    },
-                    error: function (err) {
-                        alert(err);
-                    }
-                });
-                n++;
-            }
-        }, 2000);
-    })
+        $(function () {
+            var n = 1;
+            setInterval(function () {
+                if (n < 11) {
+                    $.ajax({
+                        type: "Post",
+                        url: "Index.aspx/showprogress",
+                        data: "{'Index':'" + n + "'}",
+                        contentType: "application/json; charset=utf-8",
+                        dataType: "json",
+                        success: function (data) {
+                            var value = data.d;
+                            //alert(value);
+                            $(".progress-bar").attr("aria-valuenow", value);
+                            $(".progress-bar").attr("style", "width:" + value + "%");
+                            $(".progress-bar").text(value + "%");
+                        },
+                        error: function (err) {
+                            alert(err);
+                        }
+                    });
+                    n++;
+                }
+            }, 2000);
+        })
     </script>
 
     <div> <text style="font-size:medium"><b>Pokemon Lists</b></text></div>
 
     <br />
-
+    <div id="progress_wrapper" class="d-none"></div>
+    <lable id="progress_status">50% uploaded!!</lable>
     <div class="progress md-progress" style="height: 20px">
-        <div class="progress-bar" role="progressbar" style="width:40%; height: 40px" aria-valuenow="25" aria-valuemin="20" aria-valuemax="100">25%</div>
+        <div class="progress mb-3"></div>
+        <div id="progress" class="progress-bar" role="progressbar" style="width:40%; height:100px" aria-valuenow="25" aria-valuemin="20" aria-valuemax="100">25%</div>
     </div>
+    <div id="alert_wrapper"></div>
+
+    <script>
+        var progress = document.getElementById("progress");
+        var progress_wrapper = document.getElementById("progress_wrapper");
+        var progress_status = document.getElementById("progress_status");
+
+        var submit_btn = document.getElementById("submit_btn");
+        function upload(url)
+        {
+            if (!input.value)
+                show.alert("No file selected!","warning");
+            return;
+        }
+        Request.upload.addEventListener("progress", function (e)
+        {
+            var loaded = e.loaded;
+            var total = e.total;
+            var percentage_complete = (loaded / total * 100);
+        
+        progress.setAttribute("style", 'width: ${Math.floor(percentage_complete)}%');
+        progress_status.innerText='${ Math.floor(percentage_complete) }% uploaded';
+        })
+    </script>
+
     <br />
     <div class="panel panel-default">
         <div class="panel-body">
-
-            <div>
-
-                <figure class="figure">
-                    <img src=@ViewData["sprites"] class="figure-img img-fluid rounded" alt="...">
-                    <figcaption class="figure-caption text-right">@ViewData["pname"]</figcaption>
-                </figure>
-                Pokemon ID: @ViewData["pid"]<br />
-            </div>
-            <br />
             <form class="form-horizontal" method="post" id="adminForm" action="">
-
-
                 <div class="form-group">
                     <label class="control-label col-sm-2" for="start_pid">Start Pokemon ID:</label>
                     <input type="text" class="form-control" name="start_pid" placeholder="Start Pokemon ID">
@@ -73,9 +88,7 @@
 
                 <div class="form-group">
                     <div class="col-sm-offset-2 col-sm-10">
-
                         <input type="submit" value="Insert & Update existing data" />
-
                     </div>
                 </div>
             </form>

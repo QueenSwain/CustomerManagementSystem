@@ -8,29 +8,49 @@
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">
+            <img src="~/Content/Images/logo.jpg" width="30" height="30" class="d-inline-block align-top" alt="" />
+            My Pokedex
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
         </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+                @Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "nav-item nav-link" })
+                @Html.ActionLink("API", "Index", "Help", new { area = "" }, new { @class = "nav-item nav-link" })
+                @Html.ActionLink("Admin", "Index", "Admin", new { id = "adminForm" }, new { @class = "nav-item nav-link" })
+                @Html.ActionLink("User", "Index", "User", new { id = "" }, new { @class = "nav-item nav-link" })
 
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-
-
-                <div>
-                    <ul class="nav navbar navbar-left d-flex d-inline-flex">
-                        <li>@Html.ActionLink("Home", "Index", "Home", new { area = "" }, null)</li>
-                        <li>@Html.ActionLink("API", "Index", "Help", new { area = "" }, null)</li>
-                        <li>@Html.ActionLink("Admin", "Index", "Admin", new { id = "adminForm" }, null)</li>
-                        <li>@Html.ActionLink("User", "Index", "User", new { id = "" }, null)</li>
-                    </ul>
-                </div>
             </div>
         </div>
-    </div>
+    </nav>
+
+    @*<div class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+
+                        @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+
+
+                        <div>
+                            <ul class="nav navbar navbar-left d-flex d-inline-flex">
+                                <li>@Html.ActionLink("Home", "Index", "Home", new { area = "" }, null)</li>
+                                <li>@Html.ActionLink("API", "Index", "Help", new { area = "" }, null)</li>
+                                <li>@Html.ActionLink("Admin", "Index", "Admin", new { id = "adminForm" }, null)</li>
+                                <li>@Html.ActionLink("User", "Index", "User", new { id = "" }, null)</li>
+                            </ul>
+
+                        </dirv>
+                    </button>
+                </div>
+            </div>
+        </div>*@
     <div class="container body-content">
         @RenderBody()
         <hr />

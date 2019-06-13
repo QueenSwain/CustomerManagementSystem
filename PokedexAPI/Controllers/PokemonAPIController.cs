@@ -9,7 +9,7 @@ namespace PokedexAPI.Controllers
         // GET api/<controller>
         public IEnumerable<Pokemon> Get()
         {
-            using (PokedexDBEntities4 entities = new PokedexDBEntities4())
+            using (PokedexDBEntities entities = new PokedexDBEntities())
             {
                 return entities.Pokemons.ToList();
             }
@@ -19,7 +19,7 @@ namespace PokedexAPI.Controllers
         // GET api/<controller>/5
         public Pokemon Get(int id)
         {
-            using (PokedexDBEntities4 entities = new PokedexDBEntities4())
+            using (PokedexDBEntities entities = new PokedexDBEntities())
             {
                 return entities.Pokemons.FirstOrDefault(e=>e.id==id);
             }

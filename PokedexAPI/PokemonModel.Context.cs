@@ -13,10 +13,10 @@ namespace PokedexAPI
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class PokedexDBEntities4 : DbContext
+    public partial class PokedexDBEntities : DbContext
     {
-        public PokedexDBEntities4()
-            : base("name=PokedexDBEntities4")
+        public PokedexDBEntities()
+            : base("name=PokedexDBEntities")
         {
         }
     

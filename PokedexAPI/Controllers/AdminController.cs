@@ -33,7 +33,7 @@ namespace PokedexAPI.Controllers
             int start_id = Convert.ToInt32(start_pid);
             int end_id = Convert.ToInt32(end_pid);
             
-            PokedexDBEntities4 db = new PokedexDBEntities4();
+            PokedexDBEntities db = new PokedexDBEntities();
 
             WebClient wc = new WebClient();
 
@@ -52,6 +52,7 @@ namespace PokedexAPI.Controllers
                 }
                 catch(WebException excp)
                 {
+                    ViewData["error"] = excp.Message;
                     continue; //skip and go to next ID when data is not found
                 }
                 
@@ -97,7 +98,7 @@ namespace PokedexAPI.Controllers
             // / should UPDATE existing data
 
             
-                                                 
+                                               
             // TODO: Get Input from View somehow start_pid and end_pid
             return View();
         }

@@ -228,7 +228,8 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
-    <Content Include="Images\missing.png" />
+    <Content Include="Content\Images\logo.jpg" />
+    <Content Include="Content\Images\missing.png" />
     <Content Include="PokeDexInfo.html" />
     <Content Include="Areas\HelpPage\Views\Web.config" />
     <Content Include="Areas\HelpPage\Views\Shared\_Layout.cshtml" />
