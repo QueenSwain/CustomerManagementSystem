@@ -11,7 +11,7 @@ namespace MyPokeTracker.Controllers
         {
             using (PokedexDBEntities entities = new PokedexDBEntities())
             {
-                
+
                 return entities.Pokemons.ToList();
                 
             }

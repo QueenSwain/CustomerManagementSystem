@@ -37,7 +37,7 @@ namespace MyPokeTracker.Controllers
                       var result = parsed.GetRange(i * rowsize, rowsize);
                          ViewData["Pokemon"] = result;
 
-                        // break;
+                        break;
                     }
                     
                 }

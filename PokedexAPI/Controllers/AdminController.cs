@@ -60,7 +60,7 @@ namespace MyPokeTracker.Controllers
                 //dwonloading containts from url as a string 
                 JObject parsed = JObject.Parse(json); //converting json data(string) to json (object).
 
-                Pokemon pk = new Pokemon();
+                Pokemon pk=new Pokemon();
                         
                 //deserializeobject- converts Json object  to pokemon class
                 // now pk contains properties and it sets in pokemon class
