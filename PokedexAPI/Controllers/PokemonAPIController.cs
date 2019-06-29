@@ -7,11 +7,13 @@ namespace PokedexAPI.Controllers
     public class PokemonAPIController : ApiController
     {
         // GET api/<controller>
-        public IEnumerable<Pokemon> Get()
+        public List<Pokemon> Get()
         {
             using (PokedexDBEntities entities = new PokedexDBEntities())
             {
+                
                 return entities.Pokemons.ToList();
+                
             }
 
         }

@@ -6,33 +6,33 @@
 <h2>Admin Controls</h2>
 @using (Html.BeginForm("Index", "Admin", FormMethod.Post))
 {
-    <script>
-        $(function () {
-            var n = 1;
-            setInterval(function () {
-                if (n < 11) {
-                    $.ajax({
-                        type: "Post",
-                        url: "Index.aspx/showprogress",
-                        data: "{'Index':'" + n + "'}",
-                        contentType: "application/json; charset=utf-8",
-                        dataType: "json",
-                        success: function (data) {
-                            var value = data.d;
-                            //alert(value);
-                            $(".progress-bar").attr("aria-valuenow", value);
-                            $(".progress-bar").attr("style", "width:" + value + "%");
-                            $(".progress-bar").text(value + "%");
-                        },
-                        error: function (err) {
-                            alert(err);
-                        }
-                    });
-                    n++;
-                }
-            }, 2000);
-        })
-    </script>
+    @*<script>
+            $(function () {
+                var n = 1;
+                setInterval(function () {
+                    if (n < 11) {
+                        $.ajax({
+                            type: "Post",
+                            url: "Index.aspx/showprogress",
+                            data: "{'Index':'" + n + "'}",
+                            contentType: "application/json; charset=utf-8",
+                            dataType: "json",
+                            success: function (data) {
+                                var value = data.d;
+                                //alert(value);
+                                $(".progress-bar").attr("aria-valuenow", value);
+                                $(".progress-bar").attr("style", "width:" + value + "%");
+                                $(".progress-bar").text(value + "%");
+                            },
+                            error: function (err) {
+                                alert(err);
+                            }
+                        });
+                        n++;
+                    }
+                }, 2000);
+            })
+        </script>*@
 
     <div> <text style="font-size:medium"><b>Pokemon Lists</b></text></div>
 
@@ -45,28 +45,26 @@
     </div>
     <div id="alert_wrapper"></div>
 
-    <script>
+    @*<script>
         var progress = document.getElementById("progress");
         var progress_wrapper = document.getElementById("progress_wrapper");
         var progress_status = document.getElementById("progress_status");
 
         var submit_btn = document.getElementById("submit_btn");
-        function upload(url)
-        {
+        function upload(url) {
             if (!input.value)
-                show.alert("No file selected!","warning");
+                show.alert("No file selected!", "warning");
             return;
         }
-        Request.upload.addEventListener("progress", function (e)
-        {
+        Request.upload.addEventListener("progress", function (e) {
             var loaded = e.loaded;
             var total = e.total;
             var percentage_complete = (loaded / total * 100);
-        
-        progress.setAttribute("style", 'width: ${Math.floor(percentage_complete)}%');
-        progress_status.innerText='${ Math.floor(percentage_complete) }% uploaded';
+
+            progress.setAttribute("style", 'width: ${Math.floor(percentage_complete)}%');
+            progress_status.innerText = '${ Math.floor(percentage_complete) }% uploaded';
         })
-    </script>
+    </script>*@
 
     <br />
     <div class="panel panel-default">

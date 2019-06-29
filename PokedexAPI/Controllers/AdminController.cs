@@ -27,10 +27,10 @@ namespace PokedexAPI.Controllers
         }
 
         [HttpPost]
-        public ActionResult Index(string start_pid, string end_pid)
+        public ActionResult Index(string start_pid, string end_pid) //httppost-sending request to server
         {
             
-            int start_id = Convert.ToInt32(start_pid);
+          int start_id = Convert.ToInt32(start_pid);
             int end_id = Convert.ToInt32(end_pid);
             
             PokedexDBEntities db = new PokedexDBEntities();
@@ -43,12 +43,13 @@ namespace PokedexAPI.Controllers
                 // Check if Pokemon by ID exists in DB then skip
                 // TODO: Update Pokemon rather than skip
                 bool hasData =db.Pokemons.Any(db_row => db_row.id == current_id);
-                if (hasData == true) { continue; } //if true or ID exsits,continue -skip the below code
+                
+                if (hasData == true) { continue; } //if true or ID exsits,continue -skip the  for loop 
                 string root_url = string.Format("https://pokeapi.co/api/v2/pokemon/{0}/", current_id);
                 var json = string.Empty;
                 try
                 {
-                  json = wc.DownloadString(root_url);
+                  json = wc.DownloadString(root_url); //json data in a string format
                 }
                 catch(WebException excp)
                 {
@@ -57,7 +58,7 @@ namespace PokedexAPI.Controllers
                 }
                 
                 //dwonloading containts from url as a string 
-                JObject parsed = JObject.Parse(json); //converting json var string to json object parsed.
+                JObject parsed = JObject.Parse(json); //converting json data(string) to json (object).
 
                 Pokemon pk = new Pokemon();
                         
@@ -66,12 +67,13 @@ namespace PokedexAPI.Controllers
                 //set sprites_front_default = json url
                 //get image from url and convert to byte to store in DB
                         
-                pk.id = (int)parsed.SelectToken("id");
+                pk.id = (int)parsed.SelectToken("id");  
                 pk.name = (string)parsed.SelectToken("name");
                 string SpriteUrl = (string)parsed.SelectToken("sprites.front_default"); //getting only part of url as a string
 
                 if (SpriteUrl == null) {
-                    pk.sprite = System.IO.File.ReadAllBytes(Server.MapPath("~/Images/missing.png"));
+                    pk.sprite = System.IO.File.ReadAllBytes(Server.MapPath("~/Images/pokeballFev.png"));  
+                    //ReadAllBytes -opens a binary file and reads the content of the file in to a byte array
                     
                 } else {
                     pk.sprite = wc.DownloadData(SpriteUrl); //image downlading from url i.e.parsed object
@@ -79,15 +81,16 @@ namespace PokedexAPI.Controllers
                 
                 db.Pokemons.Add(pk);
                 db.SaveChanges();
-                        
-                ViewData["pid"] = pk.id;
-                ViewData["pname"] = pk.name;
-                ViewData["sprites"] = pk.sprite; //here json part of the url is displaying the image in UI
+
+                  //ViewData["sprites"] = pk.sprite;
+                 //ViewData["pid"] = pk.id;
+                //ViewData["pname"] = pk.name;
+               //here json part of the url is displaying the image in UI
             }
             
-            // Part 1 - Admin - Get Remote Data and Store in DB
-            // Get Pokemon ID, Name, Sprite as JSON
-            // Convert the JSON data to C# Pokemon Class
+             // Part 1 - Admin - Get Remote Data and Store in DB
+             // Get Pokemon ID, Name, Sprite as JSON
+             // Convert the JSON data to C# Pokemon Class
             // Get Image from Sprite URL and convert to byte
             // Store in DB
 
