@@ -4,7 +4,7 @@ using System.Linq;
 using System.Net.Http.Headers;
 using System.Web.Http;
 
-namespace PokedexAPI
+namespace MyPokeTracker
 {
     public static class WebApiConfig
     {

@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Web.Http;
 
-namespace PokedexAPI.Controllers
+namespace MyPokeTracker.Controllers
 {
     public class PokemonAPIController : ApiController
     {

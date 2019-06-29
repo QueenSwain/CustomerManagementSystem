@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace PokedexAPI.Controllers
+namespace MyPokeTracker.Controllers
 {
     public class HomeController : Controller
     {

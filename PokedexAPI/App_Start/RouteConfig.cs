@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 
-namespace PokedexAPI
+namespace MyPokeTracker
 {
     public class RouteConfig
     {

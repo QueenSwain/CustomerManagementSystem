@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace PokedexAPI
+namespace MyPokeTracker
 {
     using System;
     using System.Data.Entity;

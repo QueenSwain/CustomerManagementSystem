@@ -6,7 +6,7 @@ using System.Linq;
 using System.Web.Mvc;
 
 
-namespace PokedexAPI.Controllers
+namespace MyPokeTracker.Controllers
 {
     public class UserController : Controller
     {
@@ -26,7 +26,7 @@ namespace PokedexAPI.Controllers
                 string root_url = string.Format("http://localhost:62010/api/PokemonAPI");
                 var json = wc1.DownloadString(root_url); //dwonloading containts from url as a string 
                 List<Pokemon> parsed = JsonConvert.DeserializeObject<List<Pokemon>>(json);
-                int rowsize =50;
+                int rowsize = 50;
 
                 
                     int iterationCount = (int)(System.Math.Ceiling((float)parsed.Count / rowsize));
@@ -37,7 +37,7 @@ namespace PokedexAPI.Controllers
                       var result = parsed.GetRange(i * rowsize, rowsize);
                          ViewData["Pokemon"] = result;
 
-                        break;
+                        // break;
                     }
                     
                 }

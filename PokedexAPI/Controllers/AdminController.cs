@@ -13,9 +13,9 @@ using System.Data.Entity.Validation;
 using System.Data.Entity.Infrastructure;
 using System.Threading.Tasks;
 using System.Threading;
-using PokedexAPI;
+using MyPokeTracker;
 
-namespace PokedexAPI.Controllers
+namespace MyPokeTracker.Controllers
 {
     public class AdminController : Controller
     {
